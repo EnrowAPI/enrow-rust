@@ -17,6 +17,8 @@ pub struct EmailFindParams {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub fullname: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub settings: Option<SearchSettings>,
 }
 
@@ -24,6 +26,8 @@ pub struct EmailFindParams {
 pub struct SearchSettings {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub country_code: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retrieve_gender: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub webhook: Option<String>,
 }
@@ -112,7 +116,7 @@ pub struct VerifySingleResult {
 
 #[derive(Debug, Serialize)]
 pub struct VerifyBulkParams {
-    pub verifications: Vec<String>,
+    pub emails: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub settings: Option<WebhookSettings>,
 }
@@ -264,6 +268,8 @@ pub struct ReverseEmailBulkItem {
 #[derive(Debug, Deserialize)]
 pub struct AccountInfo {
     pub credits: f64,
+    #[serde(default)]
+    pub webhooks: Vec<String>,
 }
 
 // ── Polling ──

@@ -27,7 +27,7 @@ impl EnrowError {
     pub(crate) fn from_status(status: u16, error: String, message: String) -> Self {
         match status {
             401 => EnrowError::Authentication { message },
-            402 => EnrowError::InsufficientBalance { message },
+            422 => EnrowError::InsufficientBalance { message },
             429 => EnrowError::RateLimit { message },
             _ => EnrowError::Api { status, error, message },
         }

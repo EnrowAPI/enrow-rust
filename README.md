@@ -57,7 +57,7 @@ let result = client.verify.single(&VerifySingleParams {
 }).await?;
 
 let batch = client.verify.bulk(&VerifyBulkParams {
-    verifications: vec!["a@b.com".into(), "c@d.com".into()],
+    emails: vec!["a@b.com".into(), "c@d.com".into()],
     settings: None,
 }).await?;
 ```
