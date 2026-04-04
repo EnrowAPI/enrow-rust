@@ -29,7 +29,7 @@ impl EmailFinder {
     }
 
     pub async fn get(&self, id: &str) -> Result<EmailFindResult> {
-        self.http.get(&format!("/email/find/single/{}", id)).await
+        self.http.get_with_query("/email/find/single", &[("id", id)]).await
     }
 
     pub async fn find_bulk(&self, params: &EmailFindBulkParams) -> Result<EmailFindBulkResponse> {
@@ -37,6 +37,6 @@ impl EmailFinder {
     }
 
     pub async fn get_bulk(&self, id: &str) -> Result<EmailFindBulkResult> {
-        self.http.get(&format!("/email/find/bulk/{}", id)).await
+        self.http.get_with_query("/email/find/bulk", &[("id", id)]).await
     }
 }

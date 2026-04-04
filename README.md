@@ -23,8 +23,7 @@ async fn main() {
 
     let result = client.email.find(&EmailFindParams {
         company_domain: Some("apple.com".into()),
-        first_name: Some("Tim".into()),
-        last_name: Some("Cook".into()),
+        fullname: Some("Tim Cook".into()),
         ..Default::default()
     }).await.unwrap();
 
@@ -58,7 +57,7 @@ let result = client.verify.single(&VerifySingleParams {
 }).await?;
 
 let batch = client.verify.bulk(&VerifyBulkParams {
-    emails: vec!["a@b.com".into(), "c@d.com".into()],
+    verifications: vec!["a@b.com".into(), "c@d.com".into()],
     settings: None,
 }).await?;
 ```

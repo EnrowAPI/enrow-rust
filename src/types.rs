@@ -15,9 +15,7 @@ pub struct EmailFindParams {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub company_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub first_name: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub last_name: Option<String>,
+    pub fullname: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub settings: Option<SearchSettings>,
 }
@@ -114,7 +112,7 @@ pub struct VerifySingleResult {
 
 #[derive(Debug, Serialize)]
 pub struct VerifyBulkParams {
-    pub emails: Vec<String>,
+    pub verifications: Vec<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub settings: Option<WebhookSettings>,
 }
@@ -166,8 +164,8 @@ pub struct PhoneFindResponse {
 pub struct PhoneFindResult {
     pub id: String,
     pub qualification: String,
-    pub phone: Option<String>,
-    pub country_code: Option<String>,
+    pub number: Option<String>,
+    pub country: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -196,8 +194,8 @@ pub struct PhoneBulkResult {
 pub struct PhoneBulkItem {
     pub index: u32,
     pub qualification: String,
-    pub phone: Option<String>,
-    pub country_code: Option<String>,
+    pub number: Option<String>,
+    pub country: Option<String>,
 }
 
 // ── Reverse Email ──
@@ -266,7 +264,6 @@ pub struct ReverseEmailBulkItem {
 #[derive(Debug, Deserialize)]
 pub struct AccountInfo {
     pub credits: f64,
-    pub webhooks: Vec<String>,
 }
 
 // ── Polling ──
