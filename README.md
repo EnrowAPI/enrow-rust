@@ -99,9 +99,9 @@ match client.email.find(&params).await {
 
 | Endpoint | Cost |
 |----------|------|
-| Email Finder | 1 credit/email |
-| Email Verifier | 0.25 credit/email |
-| Phone Finder | 50 credits/phone |
+| Email Finder | 1 credit/email found |
+| Email Verifier | 0.25 credit/email search |
+| Phone Finder | 50 credits/phone found |
 
 ## Links
 
