@@ -75,15 +75,6 @@ let result = client.phone.find_and_wait(&PhoneFindParams {
 }, None).await?;
 ```
 
-## Reverse Email
-
-```rust
-let result = client.reverse_email.find(&ReverseEmailParams {
-    email: "tcook@apple.com".into(),
-    settings: None,
-}).await?;
-```
-
 ## Account
 
 ```rust
@@ -111,7 +102,6 @@ match client.email.find(&params).await {
 | Email Finder | 1 credit/email |
 | Email Verifier | 0.25 credit/email |
 | Phone Finder | 50 credits/phone |
-| Reverse Email | 5 credits/lookup |
 
 ## Links
 
