@@ -2,7 +2,7 @@ use reqwest::Client;
 use serde::{de::DeserializeOwned, Serialize};
 
 use crate::error::{EnrowError, Result};
-use crate::resources::{EmailFinder, EmailVerifier, PhoneFinder, ReverseEmailResource, AccountResource};
+use crate::resources::{AccountResource, EmailFinder, EmailVerifier, PhoneFinder};
 
 const BASE_URL: &str = "https://api.enrow.io";
 
@@ -10,7 +10,6 @@ pub struct Enrow {
     pub email: EmailFinder,
     pub verify: EmailVerifier,
     pub phone: PhoneFinder,
-    pub reverse_email: ReverseEmailResource,
     pub account: AccountResource,
 }
 
@@ -25,7 +24,6 @@ impl Enrow {
             email: EmailFinder::new(http.clone()),
             verify: EmailVerifier::new(http.clone()),
             phone: PhoneFinder::new(http.clone()),
-            reverse_email: ReverseEmailResource::new(http.clone()),
             account: AccountResource::new(http),
         }
     }
@@ -84,9 +82,7 @@ impl HttpClient {
 
         if status >= 400 {
             let body: serde_json::Value = resp.json().await.unwrap_or_default();
-            let error = body["error"].as_str().unwrap_or("UnknownError").to_string();
-            let message = body["message"].as_str().unwrap_or("Unknown error").to_string();
-            return Err(EnrowError::from_status(status, error, message));
+            return Err(EnrowError::from_response(status, &body));
         }
 
         Ok(resp.json().await?)

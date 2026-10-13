@@ -1,13 +1,11 @@
 mod email_finder;
 mod email_verifier;
 mod phone_finder;
-mod reverse_email;
 mod account;
 
 pub use email_finder::EmailFinder;
 pub use email_verifier::EmailVerifier;
 pub use phone_finder::PhoneFinder;
-pub use reverse_email::ReverseEmailResource;
 pub use account::AccountResource;
 
 use std::future::Future;
